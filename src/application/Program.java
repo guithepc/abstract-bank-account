@@ -1,28 +1,39 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entities.Account;
 import entities.BusinessAccount;
 import entities.SavingsAccount;
 
 public class Program {
 	public static void main(String[] args) {
-		Account acc = new Account(1000, "Alex", 0.0);
 		
-		BusinessAccount ba = new BusinessAccount(1001, "Pietro", 0.0, 5000.0);
+		Account acc1 = new BusinessAccount(8779, "Guilherme", 800000.00, 20000.00);
+		Account acc2 = new SavingsAccount(9989, "Nicole", 76500.00, 0.03);
 		
-		SavingsAccount sa = new SavingsAccount(687, "Guilherme", 0.0, 0.03);
+		List<Account> list = new ArrayList<>();
 		
-		sa.withdraw(50);
+		list.add(acc1);
+		list.add(acc2);
 		
-		acc.withdraw(50);
+		double sum = 0;
+		for (Account account : list) {
+			sum += account.getBalance();
+		}
+
+		System.out.println("Total balance: " + sum);
 		
-		ba.withdraw(200);
+		for (Account account : list) {
+			account.deposit(50);
+		}
 		
-		System.out.println(acc.getBalance());
+		for (Account account : list) {
+			System.out.println("Updated value : " + account.getNumber() + ", $" + account.getBalance());
+		}
 		
-		System.out.println(sa.getBalance());
 		
-		System.out.println(ba.getBalance());
 		
 	}
 }
